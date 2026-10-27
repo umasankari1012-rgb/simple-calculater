@@ -1,0 +1,172 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 16px;
+}
+
+/* Calculator Container */
+.calculator {
+    width: 100%;
+    max-width: 350px;
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Display Screen */
+#display {
+    width: 100%;
+    height: 72px;
+    background: #090d16;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    color: #f8fafc;
+    font-size: 2.2rem;
+    font-weight: 500;
+    text-align: right;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    outline: none;
+    letter-spacing: 1px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+    font-variant-numeric: tabular-nums;
+}
+
+#display::placeholder {
+    color: #475569;
+}
+
+/* Keypad Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 60px;
+    gap: 12px;
+}
+
+/* General Button Styles */
+.buttons button {
+    border: none;
+    outline: none;
+    border-radius: 14px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: #334155;
+    color: #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2),
+                0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    transition: all 0.15s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.buttons button:hover {
+    background: #3f516d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px -1px rgba(0, 0, 0, 0.3);
+}
+
+.buttons button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    filter: brightness(0.92);
+}
+
+/* Clear (C) Button */
+.buttons button.clear {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+.buttons button.clear:hover {
+    background: #dc2626;
+}
+
+/* Delete (DEL) Button */
+.buttons button[onclick*="deleteLast"] {
+    background: #475569;
+    color: #f8fafc;
+}
+
+.buttons button[onclick*="deleteLast"]:hover {
+    background: #52637a;
+}
+
+/* Operator Buttons (+, -, *, /) */
+.buttons button[onclick*="addValue('/')"],
+.buttons button[onclick*="addValue('*')"],
+.buttons button[onclick*="addValue('-')"],
+.buttons button[onclick*="addValue('+')"] {
+    background: #6366f1;
+    color: #ffffff;
+    font-size: 1.35rem;
+}
+
+.buttons button[onclick*="addValue('/')"]:hover,
+.buttons button[onclick*="addValue('*')"]:hover,
+.buttons button[onclick*="addValue('-')"]:hover,
+.buttons button[onclick*="addValue('+')"]:hover {
+    background: #4f46e5;
+}
+
+/* Equals (=) Button */
+.buttons button.equal {
+    grid-row: span 2;
+    height: 100%;
+    background: #10b981;
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.buttons button.equal:hover {
+    background: #059669;
+}
+
+/* Zero (0) Button - spans two columns */
+.buttons button[onclick*="addValue('0')"] {
+    grid-column: span 2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 380px) {
+    .calculator {
+        padding: 16px;
+        border-radius: 20px;
+    }
+
+    #display {
+        height: 60px;
+        font-size: 1.8rem;
+        padding: 10px 14px;
+        margin-bottom: 14px;
+    }
+
+    .buttons {
+        gap: 8px;
+        grid-auto-rows: 52px;
+    }
+
+    .buttons button {
+        border-radius: 10px;
+        font-size: 1.1rem;
+    }
+}
